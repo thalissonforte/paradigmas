@@ -1,0 +1,24 @@
+func ["Pedro","Alvares","Cabral", "aiarurururue"] 
+func ["Pedro","Alvares","Cabral"] 
+betterEncodeName  "Senha legal que vou usar para o trabalho auxiliar hehe"
+encodeName "Senha legal que vou usar para o trabalho auxiliar hehe"
+userName "Vai ser meu proximo nick"
+lastName "Muito bem haskell"
+lastName "Paralele pi pe do"
+isInt "1213431244"
+isInt "12u34891924"
+firstName "Pedroo looo asda"
+firstName "Pedroo looo"
+codificaAnon  "Pedruncio aa"
+codifica "Pedruncio aa"
+codifica "Pedruncio"
+semVogaisAnon "Pedro Alvares"
+semVogais "Pedro Alvares"
+htmlListItemsAnon ["Pedro","Alvares","Cabral"]
+htmlListItems ["Pedro","Alvares","Cabral"]
+addComma ["Pedro","Alvares","Cabral"]
+:r
+isVowel '3'
+isVowel 'e'
+isVowel 'b'
+isVowel 'a'
