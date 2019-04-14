@@ -66,6 +66,9 @@ genTripleCircle n r initGap gap l = [((initGap*x + gap * sin(y*degTorad 120), (z
 genSinCircle :: Int -> Int -> Float -> Float -> Int -> [Circle]
 genSinCircle n r initGap gap lines = [((initGap + (x*gap), initGap + (y*100) + 50*sin(x * degTorad 30)), fromIntegral r) | y<-[0..fromIntegral (lines-1)], x<-[0..fromIntegral (n-1)]]
 
+genCircleCircle :: Int -> Int -> Float -> Float -> Float -> [Circle]
+genCircleCircle n r initGap gap l = [((initGap*x + gap * sin(y*degTorad 120), ((z-1)*60) + initGap/1.5 - gap*cos(y*degTorad 120)), fromIntegral r) | z<-[0..(l-1)], x <- [1..6], y <- [2,1,0]]
+
 -------------------------------------------------------------------------------
 -- Strings SVG
 -------------------------------------------------------------------------------
@@ -154,3 +157,18 @@ genCase4 = do
         gap = 30        -- gap padrao
 
 
+genCase5 :: IO ()
+genCase5 = do
+  writeFile "case5.svg" (txtBuild)
+  where txtBuild = svgBegin width height ++ svgfigs ++ svgEnd
+        svgfigs = svgElements svgCircl circles (map svgStyle palette)
+        circles = genCircleCircle ntriple rad initGap gap nlines
+        palette = rgbPalette (ntriple*6)
+        -- ALGUMAS INFORMACOES SOBRE O SVG DOS CIRCULOS NO CIRCULO
+        ntriple = 12     -- total de triplas
+        nlines = 5      -- total de linhas
+        rad = 30        -- raio circulo
+        width = 1500    -- largura svg
+        height = 500    -- altura svg
+        initGap = 100   -- gap inicial
+        gap = 20       -- gap padrao
