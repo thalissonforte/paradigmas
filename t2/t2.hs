@@ -67,7 +67,7 @@ genSinCircle :: Int -> Int -> Float -> Float -> Int -> [Circle]
 genSinCircle n r initGap gap lines = [((initGap + (x*gap), initGap + (y*100) + 50*sin(x * degTorad 30)), fromIntegral r) | y<-[0..fromIntegral (lines-1)], x<-[0..fromIntegral (n-1)]]
 
 genCircleCircle :: Int -> Int -> Float -> Float -> Float -> [Circle]
-genCircleCircle n r initGap gap l = [((initGap*x + gap * sin(y*degTorad 120), ((z-1)*60) + initGap/1.5 - gap*cos(y*degTorad 120)), fromIntegral r) | z<-[0..(l-1)], x <- [1..6], y <- [2,1,0]]
+genCircleCircle n r initGap gap l = [((60*x + gap * sin(y*degTorad 120), (z*60) + initGap/1.5 - gap*cos(y*degTorad 120)), fromIntegral r) | z<-[0..(l-1)], x <- [1..6], y <- [2,1,0]]
 
 -------------------------------------------------------------------------------
 -- Strings SVG
@@ -171,4 +171,4 @@ genCase5 = do
         width = 1500    -- largura svg
         height = 500    -- altura svg
         initGap = 100   -- gap inicial
-        gap = 20       -- gap padrao
+        gap = 5       -- gap padrao
