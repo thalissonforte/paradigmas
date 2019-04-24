@@ -80,9 +80,9 @@ zipmult(L1,L2,L3) :-
 
 %11
 potencias2(N,N,[]).
-potencias2(A, N, L) :-
+potencias2(A, N, L) :-  
   H is 2^A,
-  last(L,H),
+  L = [H|T],
   A2 is A+1,
   A<N,
   potencias2(A2, N, T), !.
