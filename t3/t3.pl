@@ -90,3 +90,12 @@ potencias2(A, N, L) :-
 potencias(N,L) :-
   A is 0,
   potencias2(A, N, L).
+
+%12
+cedulas(_, [], []).
+cedulas(V,L1,L2) :-
+  L1 = [H1|T1],
+  L2 = [H2|T2],
+  H2 is V//H1,
+  A is mod(V, H1),
+  cedulas(A, T1, T2), !.
