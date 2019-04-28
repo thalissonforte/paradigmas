@@ -1,3 +1,6 @@
+% Remover warning de discontiguous
+:-style_check(-discontiguous).
+
 % DEFINIÇÕES
 relacionamento(X, Y) :- relacao(X, Y), !.
 relacionamento(X, Y) :- relacao(Y, X), !.
@@ -5,21 +8,31 @@ relacionamento(X, Y) :- relacao(Y, X), !.
 % Em uma manhã de sábado, o inspetor Hercule Poirot foi requisitado para solucionar um mistério da morte de Anita, 
 %  que foi assassinada no apartamento que dividia com algumas pessoas.
 % O inspetor viu indícios de que o crime aconteceu na sexta ou na quinta-feira e foi cometido por apenas uma pessoa.
-assassinato(apartamento, quinta).
-assassinato(apartamento, sexta).
+no_local(X) :- quinta(X, apartamento).
+no_local(X) :- sexta(X, apartamento).
 
 % Ele também viu três possíveis motivos para o crime: dinheiro, ciúme ou insanidade. 
-
+motivacao(X, Y) :- insanidade(X), Y = insanidade.
+motivacao(X, Y) :- dinheiro(X), Y = dinheiro.
+motivacao(X, Y) :- ciumes(X), Y = ciumes.
 
 % Além disso, o agressor devia ser alguém que dividia o apartamento com Anita.
-
+dividia(pedro).
+dividia(caren).
+dividia(bia).
+dividia(adriano).
+dividia(alice).
+dividia(bernardo).
+dividia(maria).
+dividia(henrique).
 
 % O bastão de baseball que foi roubado do amigo pobre de Anita, Bernardo, na quinta-feira em Porto Alegre 
 %   ou na quarta-feira em Santa Maria; OU
 % O martelo que foi roubado da caixa de ferramentas do apartamento na quarta ou na quinta-feira.
 %bastao(bernardo).
 bastao(X) :- quarta(X, santa_maria) ; quinta(X, porto_alegre).
-martelo(X) :- quarta(Y, apartamento) ; quinta(Y, apartamento).
+martelo(X) :- quarta(X, apartamento) ; quinta(X, apartamento).
+pobre(bernardo).
 
 % O assassino entrou no quarto de Anita utilizando a chave que roubou dela. 
 % Esta chave foi roubada na quarta-feira em Santa Maria ou na terça-feira em Porto Alegre.
@@ -115,7 +128,24 @@ sexta(maria, apartamento).
 insano(adriano).
 insano(maria).
 
+% Ciumes
+ciumes(X) :- relacionamento(anita, Y), relacionamento(Y, X).
 
+% Dinheiro
+dinheiro(X) :- pobre(X).
+
+% Insanidade
+insanidade(X) :- insano(X).
+
+% Vitima
 vitima(anita).
 
+% Acesso à ferramenta, local, chave e dia do assassinato
+acesso(X) :-
+    (bastao(X) ; martelo(X)),
+    chave(X),
+    no_local(X), 
+    dividia(X), !.
 
+% Descobrir assassino X pelo motivo Y
+assassino(X, Y) :- acesso(X), motivacao(X, Y), !.
