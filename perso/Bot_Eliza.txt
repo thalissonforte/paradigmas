@@ -1,0 +1,29 @@
+Hello. I am ELIZA. How can I help you?
+> Hi
+
+I am not sure I understand you fully.
+> How are you?
+
+Why do you ask?
+> Turing test
+
+Please go on.
+> Hahahhah
+
+What does that suggest to you?
+> 00101011101010101
+
+Do you feel strongly about discussing such things?
+> Do you understand binary language?
+
+We were discussing you, not me.
+> Oooohh. That's Ok. 10101010011101001011
+
+I am not sure I understand you fully.
+> Do you
+
+Oh, i.
+> Hahhah
+
+I am not sure I understand you fully.
+> h
