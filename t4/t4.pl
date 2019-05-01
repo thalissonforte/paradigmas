@@ -2,8 +2,8 @@
 :-style_check(-discontiguous).
 
 % DEFINIÇÕES
-relacionamento(X, Y) :- relacao(X, Y), !.
-relacionamento(X, Y) :- relacao(Y, X), !.
+relacionamento(X, Y) :- relacao(X, Y).
+relacionamento(X, Y) :- relacao(Y, X).
 
 % Em uma manhã de sábado, o inspetor Hercule Poirot foi requisitado para solucionar um mistério da morte de Anita, 
 %  que foi assassinada no apartamento que dividia com algumas pessoas.
@@ -54,6 +54,7 @@ relacao(pedro, alice).
 
 % Alice namorou com o igualmente rico Henrique.
 relacao(alice, henrique).
+rico(henrique).
 
 % Henrique tinha sido noivo de Maria, que é pobre.
 relacao(henrique, maria).
@@ -63,6 +64,7 @@ pobre(maria).
 relacao(maria, adriano).
 rico(adriano).
 relacao(adriano, caren).
+rico(caren).
 
 % Pedro estava em Santa Maria na segunda e na terça-feira, em Porto Alegre na quarta, 
 %    em Santa Maria novamente na quinta e depois voltou ao apartamento.
@@ -145,7 +147,7 @@ acesso(X) :-
     (bastao(X) ; martelo(X)),
     chave(X),
     no_local(X), 
-    dividia(X), !.
+    dividia(X).
 
 % Descobrir assassino X pelo motivo Y
-assassino(X, Y) :- acesso(X), motivacao(X, Y), !.
+assassino(X, Y) :- acesso(X), motivacao(X, Y).
