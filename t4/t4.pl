@@ -149,5 +149,10 @@ acesso(X) :-
     no_local(X), 
     dividia(X).
 
-% Descobrir assassino X pelo motivo Y
+% Descobrir assassino X (pelo motivo Dinheiro)
+% assassino(X, Y) :- acesso(X), motivacao(X, Y), Y = dinheiro.
+% assassino(X) :- acesso(X), motivacao(X, Y), Y = dinheiro.
+
+% Descobrir assassino X (pelo motivo Y)
 assassino(X, Y) :- acesso(X), motivacao(X, Y).
+assassino(X) :- acesso(X), motivacao(X, Y).
