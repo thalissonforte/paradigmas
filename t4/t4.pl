@@ -35,8 +35,8 @@ martelo(X) :- quarta(X, apartamento) ; quinta(X, apartamento).
 pobre(bernardo).
 
 % O assassino entrou no quarto de Anita utilizando a chave que roubou dela. 
-% Esta chave foi roubada na quarta-feira em Santa Maria ou na terça-feira em Porto Alegre.
-chave(X) :- quarta(X, santa_maria) ; terca(X, porto_alegre).
+% Esta chave foi roubada na (REMOVIDO: quarta-feira) segunda-feira em Santa Maria ou na terça-feira em Porto Alegre.
+chave(X) :- segunda(X, santa_maria) ; terca(X, porto_alegre).
 
 % Dinheiro foi roubado do quarto de Anita e sua amiga Bia, que é pobre, tem uma cópia da chave.
 pobre(bia).
@@ -154,5 +154,5 @@ acesso(X) :-
 % assassino(X) :- acesso(X), motivacao(X, Y), Y = dinheiro.
 
 % Descobrir assassino X (pelo motivo Y)
-assassino(X, Y) :- acesso(X), motivacao(X, Y).
-assassino(X) :- acesso(X), motivacao(X, Y).
+assassino(X, Y) :- acesso(X), motivacao(X, Y), !.
+assassino(X) :- acesso(X), motivacao(X, _), !.
