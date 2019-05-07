@@ -67,4 +67,22 @@ userName(Nome, User):-
     string_chars(Nome, NomeDividido),
     NomeDividido = [PrimeiraLetra|_],
     lastName(Nome, Last),
-    User = [PrimeiraLetra|Last].
+    atom_concat(PrimeiraLetra,Last,User).
+
+% 10
+troca('a','4').
+troca('e','3').
+troca('i','2').
+troca('o','1').
+troca('u','0').
+troca(C,C).
+
+encode([],[]).
+encode([H|T], N):-
+    troca(H, X),
+    N = [X|Resto],
+    encode(T, Resto).
+
+encodeName(Nome, N) :-
+    string_chars(Nome, NomeDividido),
+    encode(NomeDividido, N).
