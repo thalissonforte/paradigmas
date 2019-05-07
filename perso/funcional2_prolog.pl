@@ -85,4 +85,25 @@ encode([H|T], N):-
 
 encodeName(Nome, N) :-
     string_chars(Nome, NomeDividido),
-    encode(NomeDividido, N).
+    encode(NomeDividido, E),
+    string_chars(N, E), !.
+
+% 11
+betterTroca('a','4').
+betterTroca('e','3').
+betterTroca('i','1').
+betterTroca('o','0').
+betterTroca('u',"00").
+betterTroca(C,C).
+
+betterEncode([],[]).
+betterEncode([H|T], N):-
+    betterTroca(H, X),
+    N = [X|Resto],
+    betterEncode(T, Resto).
+
+betterEncodeName(Nome, N) :-
+    string_chars(Nome, NomeDividido),
+    betterEncode(NomeDividido, H),
+    atomic_list_concat(H, N), !.
+
