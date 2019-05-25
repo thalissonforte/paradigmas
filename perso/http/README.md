@@ -1,6 +1,5 @@
 # HTTP Requests em Java
 
-## Questões
 #### 1. Quais são as referências para objetos declaradas no código? De que classes são essas referências?
 É criado um objeto da classe URL e sua referência fica em `url`.  
 
