@@ -27,7 +27,7 @@ import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
 
-public class Main extends Application {
+public class EnadeUFSMExplorer extends Application {
 
     // CONTROLADOR
     static Controller controller;
@@ -98,7 +98,7 @@ public class Main extends Application {
             int index = table.getSelectionModel().getSelectedIndex();
             if(index > -1) {
                 Row linha = controller.getRows().get(index);
-                int heightScene = 600, widthScene = 500;
+                int heightScene = 250, widthScene = 600;
 
                 // CRIANDO NOVA JANELA
                 Stage dialog = new Stage();
@@ -114,28 +114,60 @@ public class Main extends Application {
                 VBox vb3 = new VBox(10);
                 vb3.setAlignment(Pos.CENTER);
 
-                // ANALISANDO A EXISTENCIA DE IMAGEM E SETANDO IMGVIEW
-                ImageView imageView = null;
-                if (linha.getUrlCrop().length() > 0) { // CASO HAJA IMAGEM
-                    URL url = null;
-                    try {
-                        url = new URL(linha.getUrlCrop());
-                        imageView = new ImageView(linha.getUrlCrop());
-                        imageView.setFitHeight(heightScene);
-                        imageView.setPreserveRatio(true);
-                        vb2.getChildren().add(imageView);
-                    } catch (MalformedURLException e1) {
-                        System.out.println("Erro de URL.");
-                        e1.printStackTrace();
-                    }
-                } else { // OPCAO CASO NAO HAJA IMAGEM
-                    heightScene = 80;
-                    widthScene = 200;
+                // BOTAO IMAGEM
+                Button btnImg = new Button("Imagem da questão");
+
+                // CASO TENHA IMAGEM
+                if(linha.getUrlCrop().length() > 0){
+                    vb3.getChildren().add(btnImg);
+                    btnImg.setOnAction(evt ->{
+                        VBox vbImg = new VBox(10);
+                        vbImg.setAlignment(Pos.CENTER);
+
+                        // ANALISANDO A EXISTENCIA DE IMAGEM E SETANDO IMGVIEW
+                        ImageView imageView = null;
+                        if (linha.getUrlCrop().length() > 0) { // CASO HAJA IMAGEM
+                            URL url = null;
+                            try {
+                                url = new URL(linha.getUrlCrop());
+                                imageView = new ImageView(linha.getUrlCrop());
+                                imageView.setFitHeight(600);
+                                imageView.setPreserveRatio(true);
+                                vbImg.getChildren().add(imageView);
+                            } catch (MalformedURLException e1) {
+                                System.out.println("Erro de URL.");
+                                e1.printStackTrace();
+                            }
+                        }
+
+                        // CRIA NOVA JANELA PARA A IMAGEM
+                        Stage dialog2 = new Stage();
+                        dialog2.initModality(Modality.APPLICATION_MODAL);
+                        dialog2.initOwner(stage);
+                        dialog2.setTitle("Questão " + linha.getIdQuestao());
+                        Scene dialogScene = new Scene(vbImg, 600, 600);
+                        dialog2.setScene(dialogScene);
+                        dialog2.setResizable(false);
+                        dialog2.show();
+
+                    });
                 }
 
                 // VINCULANDO
+                // DA LINHA
+                Text ano = new Text("Ano: " + linha.getAno());
+                Text prova = new Text("Prova: " + linha.getProva());
+                Text tipo = new Text("Tipo: " + linha.getTipoQuestao());
+                Text idQuestao = new Text("ID Questão: " + linha.getIdQuestao());
+                Text objeto = new Text("Objeto: " + linha.getObjeto());
+                Text acertosCurso = new Text("Acertos curso: " + linha.getAcertosCurso());
+                Text acertosRegiao = new Text("Acertos região: " + linha.getAcertosRegiao());
+                Text acertosBrasil = new Text("Acertos Brasil: " + linha.getAcertosBrasil());
+                Text diferencaAcertos = new Text("Diferença acertos: " + linha.getDiferencaAcertos());
+
+                // NOVOS
                 Text gabarito = new Text("Gabarito: " + linha.getGabarito());
-                vb3.getChildren().add(gabarito);
+                vb3.getChildren().addAll(ano, prova, tipo, idQuestao, objeto, acertosCurso, acertosRegiao, acertosBrasil, diferencaAcertos, gabarito);
                 vb.getChildren().addAll(vb2, vb3);
                 // EXIBIR SCENE
                 Scene dialogScene = new Scene(vb, widthScene, heightScene + 50);

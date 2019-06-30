@@ -88,8 +88,19 @@ public class Controller {
     }
 
     public void changeSource() throws Exception {
-        if(sourceDefault) sourceDefault = false;
-        else sourceDefault = true;
+        System.out.println("");
+        System.out.print("Planilha de ");
+        if(sourceDefault) {
+            sourceDefault = false;
+            System.out.print("SI ");
+        }
+        else{
+            sourceDefault = true;
+            System.out.print("CC ");
+        }
+        System.out.println("selecionada.");
+        System.out.println("Recarregue os dados!");
+
         reloadCsvOnline();
     }
 
