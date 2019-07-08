@@ -2,12 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b4e77383-877e-4606-b54d-ffa227076eb3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../joaocode/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../joaocode/build.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../joaocode/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../t5/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../t5/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../t6/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../t6/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/GitHubAnalyzerGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GitHubAnalyzerGUI.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -68,28 +62,28 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="gradle" value="2" />
-          <entry key="java" value="15" />
+          <entry key="java" value="16" />
           <entry key="txt" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Groovy" value="2" />
-          <entry key="JAVA" value="15" />
+          <entry key="JAVA" value="16" />
           <entry key="PLAIN_TEXT" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="gradle" value="15" />
-          <entry key="java" value="13298" />
+          <entry key="java" value="13689" />
           <entry key="txt" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Groovy" value="15" />
-          <entry key="JAVA" value="13298" />
+          <entry key="JAVA" value="13689" />
           <entry key="PLAIN_TEXT" value="1" />
         </counts>
       </usages-collector>
@@ -100,99 +94,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="184">
+            <state relative-caret-position="510">
               <caret line="30" column="34" selection-start-line="30" selection-start-column="34" selection-end-line="30" selection-end-column="34" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/github.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="45" lean-forward="true" selection-start-line="2" selection-start-column="45" selection-end-line="2" selection-end-column="45" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Commit.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="697">
-              <caret line="41" selection-start-line="41" selection-end-line="41" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#355#356#0" expanded="true" />
-                <element signature="e#394#395#0" expanded="true" />
-                <element signature="e#451#452#0" expanded="true" />
-                <element signature="e#484#485#0" expanded="true" />
-                <element signature="e#531#532#0" expanded="true" />
-                <element signature="e#566#567#0" expanded="true" />
-                <element signature="e#618#619#0" expanded="true" />
-                <element signature="e#647#648#0" expanded="true" />
-                <element signature="e#677#678#0" expanded="true" />
-                <element signature="e#709#710#0" expanded="true" />
-                <element signature="e#758#759#0" expanded="true" />
-                <element signature="e#784#785#0" expanded="true" />
-                <element signature="e#815#816#0" expanded="true" />
-                <element signature="e#848#849#0" expanded="true" />
-                <element signature="e#898#899#0" expanded="true" />
-                <element signature="e#925#926#0" expanded="true" />
-                <element signature="e#964#965#0" expanded="true" />
-                <element signature="e#1002#1003#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Request.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-628">
-              <caret line="33" selection-start-line="33" selection-end-line="33" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/CommitController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="53" column="43" selection-start-line="53" selection-start-column="43" selection-end-line="53" selection-end-column="43" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#499#500#0" expanded="true" />
-                <element signature="e#536#537#0" expanded="true" />
-                <element signature="e#518#519#0" expanded="true" />
-                <element signature="e#547#548#0" expanded="true" />
-                <element signature="e#578#579#0" expanded="true" />
-                <element signature="e#605#606#0" expanded="true" />
-                <element signature="e#715#716#0" expanded="true" />
-                <element signature="e#749#750#0" expanded="true" />
-                <element signature="e#2119#2120#0" expanded="true" />
-                <element signature="e#2147#2148#0" expanded="true" />
-                <element signature="e#2195#2196#0" expanded="true" />
-                <element signature="e#2225#2226#0" expanded="true" />
-                <element signature="e#3693#3694#0" expanded="true" />
-                <element signature="e#3720#3721#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Controller.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="79" column="28" selection-start-line="79" selection-start-column="28" selection-end-line="79" selection-end-column="28" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#2310#2311#0" expanded="true" />
-                <element signature="e#2348#2349#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -200,28 +103,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/GitHubAnalyzerGUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="135" column="25" selection-start-line="135" selection-start-column="25" selection-end-line="135" selection-end-column="25" />
+            <state relative-caret-position="98">
+              <caret line="293" column="22" selection-start-line="293" selection-start-column="22" selection-end-line="293" selection-end-column="22" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1597#1615#0" expanded="true" />
-                <element signature="e#3156#3256#0" />
-                <element signature="e#3378#4272#0" />
-                <element signature="e#6749#6775#0" expanded="true" />
-                <element signature="method#manipulaArquivoAberto#0;class#GitHubAnalyzerGUI#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/GitHubAnalyzerCmd.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="44">
-              <caret line="110" column="49" selection-start-line="110" selection-start-column="49" selection-end-line="110" selection-end-column="49" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#571#589#0" expanded="true" />
+                <element signature="e#1715#1733#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -241,6 +127,10 @@
       <find>collec</find>
       <find>setArq</find>
       <find>System.e</find>
+      <find>Repositó</find>
+      <find>escolha</find>
+      <find>ferramen</find>
+      <find>label.setV</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -664,7 +554,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1562557510919" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1562560340905" />
     <property name="last_opened_file_path" value="C:/Program Files/Java/javafx-sdk-11.0.2/lib/javafx.web.jar!/" />
     <property name="project.structure.last.edited" value="Global Libraries" />
     <property name="project.structure.proportion" value="0.0" />
@@ -724,7 +614,7 @@
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25718608" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25718608" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -733,7 +623,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.40819672" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.40819672" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -818,48 +708,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="30" column="34" selection-start-line="30" selection-start-column="34" selection-end-line="30" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/github.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="45" lean-forward="true" selection-start-line="2" selection-start-column="45" selection-end-line="2" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Commit.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="697">
-          <caret line="41" selection-start-line="41" selection-end-line="41" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#355#356#0" expanded="true" />
-            <element signature="e#394#395#0" expanded="true" />
-            <element signature="e#451#452#0" expanded="true" />
-            <element signature="e#484#485#0" expanded="true" />
-            <element signature="e#531#532#0" expanded="true" />
-            <element signature="e#566#567#0" expanded="true" />
-            <element signature="e#618#619#0" expanded="true" />
-            <element signature="e#647#648#0" expanded="true" />
-            <element signature="e#677#678#0" expanded="true" />
-            <element signature="e#709#710#0" expanded="true" />
-            <element signature="e#758#759#0" expanded="true" />
-            <element signature="e#784#785#0" expanded="true" />
-            <element signature="e#815#816#0" expanded="true" />
-            <element signature="e#848#849#0" expanded="true" />
-            <element signature="e#898#899#0" expanded="true" />
-            <element signature="e#925#926#0" expanded="true" />
-            <element signature="e#964#965#0" expanded="true" />
-            <element signature="e#1002#1003#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
@@ -901,17 +749,55 @@
         <state relative-caret-position="-517" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/GitHubAnalyzerGUI.java">
+    <entry file="file://$PROJECT_DIR$/github.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="135" column="25" selection-start-line="135" selection-start-column="25" selection-end-line="135" selection-end-column="25" />
+        <state relative-caret-position="34">
+          <caret line="2" column="45" lean-forward="true" selection-start-line="2" selection-start-column="45" selection-end-line="2" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Commit.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="697">
+          <caret line="41" selection-start-line="41" selection-end-line="41" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1597#1615#0" expanded="true" />
-            <element signature="e#3156#3256#0" />
-            <element signature="e#3378#4272#0" />
-            <element signature="e#6749#6775#0" expanded="true" />
-            <element signature="method#manipulaArquivoAberto#0;class#GitHubAnalyzerGUI#0" />
+            <element signature="e#355#356#0" expanded="true" />
+            <element signature="e#394#395#0" expanded="true" />
+            <element signature="e#451#452#0" expanded="true" />
+            <element signature="e#484#485#0" expanded="true" />
+            <element signature="e#531#532#0" expanded="true" />
+            <element signature="e#566#567#0" expanded="true" />
+            <element signature="e#618#619#0" expanded="true" />
+            <element signature="e#647#648#0" expanded="true" />
+            <element signature="e#677#678#0" expanded="true" />
+            <element signature="e#709#710#0" expanded="true" />
+            <element signature="e#758#759#0" expanded="true" />
+            <element signature="e#784#785#0" expanded="true" />
+            <element signature="e#815#816#0" expanded="true" />
+            <element signature="e#848#849#0" expanded="true" />
+            <element signature="e#898#899#0" expanded="true" />
+            <element signature="e#925#926#0" expanded="true" />
+            <element signature="e#964#965#0" expanded="true" />
+            <element signature="e#1002#1003#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="30" column="34" selection-start-line="30" selection-start-column="34" selection-end-line="30" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/GitHubAnalyzerGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="98">
+          <caret line="293" column="22" selection-start-line="293" selection-start-column="22" selection-end-line="293" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1715#1733#0" expanded="true" />
           </folding>
         </state>
       </provider>

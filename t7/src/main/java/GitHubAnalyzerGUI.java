@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -102,7 +103,9 @@ public class GitHubAnalyzerGUI extends Application {
                         preencheListView();
                     }else {
                         System.out.println("O arquivo não foi aberto.");
-                        if(listView.getItems().size() <= 0) label.setVisible(false);
+                        if(listView.getItems().size() <= 0) {
+                            label.setText("Carregue o arquivo na aba Open.");
+                        }
                     }
                 } catch (IOException e1) {
                     e1.printStackTrace();
@@ -116,7 +119,7 @@ public class GitHubAnalyzerGUI extends Application {
         vbox.setSpacing(10);
         vbox.setAlignment(Pos.TOP_LEFT);
         label.setPadding(new Insets(10, 0, 0, 10));
-        label.setVisible(false);
+        label.setText("Carregue o arquivo na aba Open.");
 
         // MENUS
         fileMenu.getItems().addAll(openFile, exit);
@@ -249,11 +252,19 @@ public class GitHubAnalyzerGUI extends Application {
         Label l3 = new Label("Repositorio com mais commits: " + (maisCommits.getRepositorioStr().split("/"))[4]);
         Label l4 = new Label("Repositorio com menos commits: " + (menosCommits.getRepositorioStr().split("/"))[4]);
 
+        PieChart graficoTotalCommits = new PieChart();
+
+        for(CommitController cc : controladores){
+            graficoTotalCommits.getData().addAll(new PieChart.Data(cc.getRepositorioStr(), cc.getQuantiaCommits()));
+        }
+
+        graficoTotalCommits.setTitle("Proporção do total de commits de cada repositório");
+        graficoTotalCommits.setPrefSize(200, 200);
 
         // VINCULANDO
-        vb.getChildren().addAll(l1,l2,l3,l4,tableView);
+        vb.getChildren().addAll(l1,l2,l3,l4,tableView, graficoTotalCommits);
 
-        Scene dialogScene = new Scene(vb, 500, 300);
+        Scene dialogScene = new Scene(vb, 600, 500);
         dialog.setScene(dialogScene);
         dialog.setResizable(false);
         dialog.show();
@@ -280,7 +291,7 @@ public class GitHubAnalyzerGUI extends Application {
         // EXIBE NOME DO ARQUIVO
         System.out.println("Nome do arquivo aberto: " + fileChoosed.getName());
         // MOSTRA LABEL
-        label.setVisible(true);
+        label.setText("Escolha a ferramenta que deseja na aba Tools");
     }
 
 }
