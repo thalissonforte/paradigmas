@@ -133,7 +133,7 @@ public class GitHubAnalyzerGUI extends Application {
         stage.show();
     }
 
-    private void requestOpen() {
+    private synchronized void requestOpen() {
         int indice = 0;
         // REQUEST DE TODOS OS REPOSITORIOS DISPONIVEIS
         for(Object o : listView.getItems()){
@@ -164,7 +164,7 @@ public class GitHubAnalyzerGUI extends Application {
         // JANELA NOVA
         Stage dialog = new Stage();
         dialog.initModality(Modality.APPLICATION_MODAL);
-        dialog.initOwner(stage);;
+        dialog.initOwner(stage);
         dialog.setTitle("Dados sobre os repositorios");
 
         VBox vb = new VBox(20);
