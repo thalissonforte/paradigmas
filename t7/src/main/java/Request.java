@@ -10,6 +10,7 @@ import java.lang.reflect.Array;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.ParseException;
 import java.util.ArrayList;
 
 public class Request extends Thread {
@@ -25,13 +26,15 @@ public class Request extends Thread {
         try {
             requestGitHub();
         } catch (IOException e) {
+            System.out.println("Requisição falhou, verifique sua conexão à internet e tente novamente.");
+            return;
+        } catch (ParseException e) {
             e.printStackTrace();
         }
 
-        //notifyThreads();
     }
 
-    private synchronized void requestGitHub() throws IOException {
+    private synchronized void requestGitHub() throws IOException, ParseException {
         String urlstr = (String) caminho.get(indice);
         JsonArray results;
         int paginaAtual = 1;
@@ -76,9 +79,9 @@ public class Request extends Thread {
             in.close();
             // PROXIMA PAGINA
             paginaAtual++;
-            // AVISANDO A OUTRA THREAD
-            commitController.conditionSignal();
         }while(results.size() >= 30);
+        // AVISANDO QUE TERMINOU
+        commitController.conditionSignal();
     }
 
     public Request(ArrayList caminhos){

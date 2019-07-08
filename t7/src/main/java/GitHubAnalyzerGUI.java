@@ -1,4 +1,7 @@
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -13,6 +16,11 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.TimeZone;
 
 public class GitHubAnalyzerGUI extends Application {
 
@@ -42,10 +50,12 @@ public class GitHubAnalyzerGUI extends Application {
     ListView listView = new ListView();
 
     // TABLEVIEW
-    TableView<Commit> tableView = null;
+    TableView<CommitController> tableView = null;
+    private final ObservableList<CommitController> dadosController = FXCollections.observableArrayList();
+    ArrayList<CommitController> controladores = new ArrayList<CommitController>();
 
     //LABEL
-    final Label label = new Label("Selecione o repositório e escolha a ferramenta que deseja na aba Tools");
+    final Label label = new Label("Escolha a ferramenta que deseja na aba Tools");
     ////////////////////////////
 
     // MAIN
@@ -56,27 +66,20 @@ public class GitHubAnalyzerGUI extends Application {
 
         // COMMIT ANALYZER
         commitAnalyzer.setOnAction(e -> {
-            // PRINT DO INDICE
             int indice = listView.getFocusModel().getFocusedIndex();
             if(indice == -1){
                 System.out.println("Carregue um arquivo na aba File e escolha um repositório.");
                 return;
             }
-
-            // CONTROLADOR DE COMMITS DO REPOSITORIO indice
-            commitController = new CommitController(indice);
-
-            // MANDA OS CAMINHOS CERTOS PARA O REQUESTER, SETA O INDICE ATUAL E O COMMITCONTROLLER
-            requestThread = new Request(controller.geraCaminhos());
-            requestThread.setCommitController(commitController);
-            requestThread.setIndice(indice);
-
-            // INICIA REQUESTS
-            requestThread.start();
+            // REQUEST DE CADA REPOSITORIO
+            requestOpen();
 
             try {
                 janelaRequests(stage);
             } catch (InterruptedException e1) {
+                System.out.println("Erro na requisição dos dados.");
+                return;
+            } catch (ParseException e1) {
                 e1.printStackTrace();
             }
         });
@@ -97,8 +100,6 @@ public class GitHubAnalyzerGUI extends Application {
                         // MANIPULA ARQUIVO E PREENCHE LIST
                         manipulaArquivoAberto(fileChoosed);
                         preencheListView();
-                        // SETA, BUSCA E GERA CAMINHOS
-                        //requestThread = new Request(controller.geraCaminhos());
                     }else {
                         System.out.println("O arquivo não foi aberto.");
                         if(listView.getItems().size() <= 0) label.setVisible(false);
@@ -132,38 +133,125 @@ public class GitHubAnalyzerGUI extends Application {
         stage.show();
     }
 
-    private synchronized void janelaRequests(Stage stage) throws InterruptedException {
-        // ESPERA A OUTRA THREAD
-        //commitController.wait();
+    private void requestOpen() {
+        int indice = 0;
+        // REQUEST DE TODOS OS REPOSITORIOS DISPONIVEIS
+        for(Object o : listView.getItems()){
+            System.out.print("Iniciando requests de ");
+            // CONTROLADOR DE COMMITS DO REPOSITORIO indice
+            commitController = new CommitController(indice, controller.getDadoIdx(indice));
+            // CRIA O REQUESTER
+            requestThread = new Request(controller.geraCaminhos());
+            requestThread.setCommitController(commitController);
+            requestThread.setIndice(indice);
+            indice++;
+            dadosController.add(commitController);
+            controladores.add(commitController);
+            requestThread.start();
+
+            // ESPERA A OUTRA THREAD
+            try {
+                commitController.conditionWait();
+            } catch (InterruptedException e1) {
+                System.out.println("Erro na thread wait.");
+                return;
+            }
+        }
+    }
+
+    private synchronized void janelaRequests(Stage stage) throws InterruptedException, ParseException {
+
         // JANELA NOVA
         Stage dialog = new Stage();
         dialog.initModality(Modality.APPLICATION_MODAL);
         dialog.initOwner(stage);;
-        dialog.setTitle("Dados sobre o repositorio");
+        dialog.setTitle("Dados sobre os repositorios");
 
         VBox vb = new VBox(20);
         vb.setAlignment(Pos.CENTER);
         vb.setSpacing(10);
 
-        // COLUNAS
-        TableColumn<Commit, String> colAuthor = new TableColumn<Commit, String>("Autor");
-        colAuthor.setCellValueFactory(cellData -> cellData.getValue().authorProperty());
+        TableColumn<CommitController, String> colRepositorio = new TableColumn<CommitController, String>("Repositório");
+        colRepositorio.setCellValueFactory(cellData -> cellData.getValue().repositorioProperty());
 
-        TableColumn<Commit, String> colMessage = new TableColumn<Commit, String>("Mensagem");
-        colMessage.setCellValueFactory(cellData -> cellData.getValue().msgProperty());
+        TableColumn<CommitController, String> colQntCommits = new TableColumn<CommitController, String>("Quantia de commits");
+        colQntCommits.setCellValueFactory(cellData -> cellData.getValue().quantiaCommitsStrProperty());
 
-        TableColumn<Commit, String> colDate = new TableColumn<Commit, String>("Data");
-        colDate.setCellValueFactory(cellData -> cellData.getValue().dateProperty());
+        TableColumn<CommitController, String> colTamanhoMedio = new TableColumn<CommitController, String>("Tamanho médio msg");
+        colTamanhoMedio.setCellValueFactory(cellData -> cellData.getValue().tamanhoMedioProperty());
 
-        tableView = new TableView<Commit>();
+        tableView = new TableView<CommitController>();
+        tableView.getColumns().addAll(colRepositorio, colQntCommits, colTamanhoMedio);
 
-        // ADICIONANDO COLUNAS NA TABELA
-        tableView.getColumns().addAll(colAuthor, colMessage, colDate);
         // SET DADOS PRA TABELA
-        tableView.setItems(commitController.getCommits());
+        tableView.setItems(dadosController);
+
+        CommitController repositorioMaisAntigo = null;
+        for(CommitController o : controladores){
+            if(repositorioMaisAntigo == null) repositorioMaisAntigo = o;
+            else{
+                SimpleDateFormat formato = new SimpleDateFormat("\"yyyy-MM-dd'T'HH:mm:ss'Z'\"");
+                formato.setTimeZone(TimeZone.getTimeZone("GMT"));
+
+                String dataAntigo = repositorioMaisAntigo.getAntigo().getDate();
+                String dataAtual = o.getAntigo().getDate();
+
+                Date antigo = formato.parse(dataAntigo);
+                Date atual = formato.parse(dataAtual);
+
+                if(atual.before(antigo)){
+                    repositorioMaisAntigo = o;
+                }
+            }
+        }
+
+        CommitController repositorioMaisNovo = null;
+        for(CommitController o : controladores){
+            if(repositorioMaisNovo == null) repositorioMaisNovo = o;
+            else{
+                SimpleDateFormat formato = new SimpleDateFormat("\"yyyy-MM-dd'T'HH:mm:ss'Z'\"");
+                formato.setTimeZone(TimeZone.getTimeZone("GMT"));
+
+                String dataNovo = repositorioMaisNovo.getNovo().getDate();
+                String dataAtual = o.getNovo().getDate();
+
+                Date novo = formato.parse(dataNovo);
+                Date atual = formato.parse(dataAtual);
+
+                if(atual.after(novo)){
+                    repositorioMaisNovo = o;
+                }
+            }
+        }
+
+        CommitController maisCommits = null;
+        for(CommitController o : controladores){
+            if(maisCommits == null) maisCommits = o;
+            else{
+                if(o.getQuantiaCommits() > maisCommits.getQuantiaCommits()){
+                    maisCommits = o;
+                }
+            }
+        }
+
+        CommitController menosCommits = null;
+        for(CommitController o : controladores){
+            if(menosCommits == null) menosCommits = o;
+            else{
+                if(o.getQuantiaCommits() < menosCommits.getQuantiaCommits()){
+                    menosCommits = o;
+                }
+            }
+        }
+
+        Label l1 = new Label("Repositorio do commit mais recente: " + (repositorioMaisNovo.getRepositorioStr().split("/"))[4]);
+        Label l2 = new Label("Repositorio do commit mais antigo: " + (repositorioMaisAntigo.getRepositorioStr().split("/"))[4]);
+        Label l3 = new Label("Repositorio com mais commits: " + (maisCommits.getRepositorioStr().split("/"))[4]);
+        Label l4 = new Label("Repositorio com menos commits: " + (menosCommits.getRepositorioStr().split("/"))[4]);
+
 
         // VINCULANDO
-        vb.getChildren().addAll(tableView);
+        vb.getChildren().addAll(l1,l2,l3,l4,tableView);
 
         Scene dialogScene = new Scene(vb, 500, 300);
         dialog.setScene(dialogScene);

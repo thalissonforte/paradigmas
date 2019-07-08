@@ -72,4 +72,8 @@ public class Controller {
         return dados.size();
     }
 
+    public String getDadoIdx(int idx){
+        return (String) dados.get(idx);
+    }
+
 }
