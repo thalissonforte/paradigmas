@@ -85,6 +85,22 @@ public class GitHubAnalyzerGUI extends Application {
             }
         });
 
+        // BOTÃO ABOUT
+        about.setOnAction(e ->{
+            Stage dialog = new Stage();
+            dialog.initModality(Modality.APPLICATION_MODAL);
+            dialog.initOwner(stage);;
+            dialog.setTitle("About");
+            VBox vb = new VBox(20);
+            vb.setAlignment(Pos.CENTER);
+            vb.setSpacing(10);
+            vb.getChildren().add(new Text("\tGitHub Analyzer GUI \ndesenvolvida por Thalisson Forte"));
+            Scene dialogScene = new Scene(vb, 200, 120);
+            dialog.setScene(dialogScene);
+            dialog.setResizable(false);
+            dialog.show();
+        });
+
         // BOTÃO EXIT
         exit.setOnAction(e -> {
             System.out.println("Programa finalizado.");
@@ -104,7 +120,7 @@ public class GitHubAnalyzerGUI extends Application {
                     }else {
                         System.out.println("O arquivo não foi aberto.");
                         if(listView.getItems().size() <= 0) {
-                            label.setText("Carregue o arquivo na aba Open.");
+                            label.setText("Carregue o arquivo na aba File.");
                         }
                     }
                 } catch (IOException e1) {
@@ -119,7 +135,7 @@ public class GitHubAnalyzerGUI extends Application {
         vbox.setSpacing(10);
         vbox.setAlignment(Pos.TOP_LEFT);
         label.setPadding(new Insets(10, 0, 0, 10));
-        label.setText("Carregue o arquivo na aba Open.");
+        label.setText("Carregue o arquivo na aba File.");
 
         // MENUS
         fileMenu.getItems().addAll(openFile, exit);
@@ -132,7 +148,8 @@ public class GitHubAnalyzerGUI extends Application {
 
         // PROPRIEDADES STAGE
         stage.setTitle("GitHub Analyzer");
-        stage.setScene(new Scene(vbox, 720, 450));
+        stage.setScene(new Scene(vbox, 500, 200));
+        stage.setResizable(false);
         stage.show();
     }
 
