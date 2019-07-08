@@ -76,4 +76,7 @@ public class Controller {
         return (String) dados.get(idx);
     }
 
+    public int getQuantiaRepositorios() {
+        return dados.size();
+    }
 }

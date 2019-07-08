@@ -62,6 +62,11 @@ public class CommitController {
         return tamanhoMedio;
     }
 
+    public float getTamanhoMedio(){
+        float tamanhoMedia = (float)tamanhoMsg / (float) quantiaCommits;
+        return tamanhoMedia;
+    }
+
     public void addCommit(Commit commit) throws ParseException {
         dados.add(commit);
         this.quantiaCommits++;
